@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		body{
+			margin: 0px;
+			padding:0px;
+			background: #ccc;
+			height: 20000px
+
+		}
+		#div1{
+			width: 50px;
+			height: 50px;
+			background: pink;
+			position: fixed;
+			right: 5px;
+			font-size:12px;
+			text-align: center;
+			line-height: 50px;
+			border-radius: 5px;
+			bottom: 10px;
+		}
+	</style> 
+	<script type="text/javascript">
+		window.onload = function(){
+			function getWin (attr){
+				return document.documentElement[attr]  || document.body[attr];
+			}
+
+			var ch =getWin("clientHeight")
+			var oDiv = document.getElementById("div1");
+			window.onscroll = function(){
+				var sT = getWin("scrollTop");
+
+				if(sT>=ch){
+					oDiv.style.display = "block";
+				}else{
+					oDiv.style.display = "none";
+				}
+
+			}
+			oDiv.onclick = move;
+			function move(){
+				oDiv.style.display = "none";
+				window.clearTimeout(this.timer);
+				oDiv.timer=null;
+
+				document.body.scrollTop -= 300;
+				if((document.body.scrollTop-300)<=0){
+					document.body.scriollTop=0;
+					return ;
+				}
+				oDiv.timer = window.setTimeout(move,10);
+			}
+		}
+	</script>
+</head>
+<body>
+	<p>sadfasdfasdfasdfasdfdasf</p>
+	<div id="div1">返回顶部</div>
+</body>
+</html>

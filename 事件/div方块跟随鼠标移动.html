@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>方块随鼠标移动</title>
+	<style type="text/css">
+		#div1{
+			width: 100px;
+			height: 100px;
+			background: green;
+			position: absolute;
+		}
+		body{
+			height: 1000px;
+		}
+	</style>
+	<script >
+	window.onload = function(){
+
+		var oDiv = document.getElementById("div1");
+		 document.onmousemove = function(ev){
+		 	var ev = ev || event;
+		 	var sTop = document.documentElement.scrollTop || document.body.scrollTop; //documentElement 标准浏览器  body 兼容浏览器
+
+		 	oDiv.style.left = ev.clientX + "px";
+		 	oDiv.style.top = ev.clientY +sTop+ "px";
+		 }
+		
+	}
+	</script>
+</head>
+<body>
+	<div id="div1"></div>
+</body>
+</html>
