@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		#div1{
+			width: 100px;
+			height: 200px;
+			border: 1px red solid;
+			position: absolute;
+			display: none;
+
+		}
+		li{
+			list-style: none;
+		}
+		ul{
+			margin: 0px;
+			padding: 0px;
+			padding: 15px;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload = function(){
+			var oDiv = document.getElementById("div1");
+
+			document.oncontextmenu = function(ev){
+				var  ev = ev || event;
+				oDiv.style.display = "block";
+				oDiv.style.left = ev.clientX + "px";
+				oDiv.style.top = ev.clientY + "px";
+				return false;
+			}
+
+			document.onclick = function(){
+				oDiv.style.display = "none";
+			}
+		}
+	</script>
+</head>
+<body>
+	<div id="div1">
+		<ul>
+			<li>进入首页</li>
+			<li>注册账号</li>
+			<li>登录游戏</li>
+			<li>点卡充值</li>
+			<li>进入商城</li>
+		</ul>
+	</div>
+</body>
+</html>

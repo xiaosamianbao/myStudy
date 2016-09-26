@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		body,div,img{
+			margin: 0px;
+			padding: 0px;
+
+		}
+		img{
+			border: none;
+		}
+		html,body{
+			width: 100%;
+		}
+		#div1 {
+            width: 100%;
+            height: 290px;
+            background: url("http://broszhu.com/works//onmousemove/img/3.jpg") no-repeat;
+            background-size: 100% 100%;
+            background: none \9;
+            _background: none;
+            background-color: #37C7D4;
+        }
+
+        #div1 img {
+            width: 100%;
+            height: 290px;
+            opacity: 0;
+            filter: alpha(opacity=0);
+        }
+	</style>
+	<script type="text/javascript">
+	window.onload = function(){
+		var oDiv = document.getElementById("div1");
+		window.setTimeout(loadImg,1000);
+		function loadImg(){
+			var oImg = new Image;
+			oImg.scr = "http://img5.imgtn.bdimg.com/it/u=2106208445,3792949864&fm=206&gp=0.jpg";
+			oImg.alt = "";
+			oImg.onload = function(){
+				oDiv.appendChilad(oImg);
+				move(this);
+			}
+		}
+
+		function move(ele){
+			var speed = 0;
+			_move();
+			function _move(){
+				window.clearTimeout(ele.timer);
+				speed+=0.02;
+				setCss(ele,"opacity",speed);
+				if(speed>=1){
+					setCss(ele,"opacity",1);
+					return ;
+				}
+				ele.tiemr= window.setTImeout(_move,10);
+
+			}
+		}
+
+		function setCss(curEle,attr,value){
+			switch(attr){
+				case "opacity":
+					curEle["style"][attr] = value;
+					curEle["style"]["filter"] = "alpha(opacity=" + (value * 100) + ")";
+               		 break;
+           		 case "zIndex":
+                	curEle["style"][attr] = value;
+                	break;
+            	default:
+                	curEle["style"][attr] = !isNaN(value) ? value += "px" : value;
+			}
+		} 
+	}
+	</script>
+</head>
+<body>
+	<div id="div1"></div>
+</body>
+</html>

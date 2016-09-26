@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		li{
+			list-style: none;
+			width: 100px;
+			height: 30px;
+			background: yellow;
+			margin: 10px;
+		}
+		#div1{
+			width: 100px;
+			height: 100px;
+			background: red;
+			margin: 300px;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload = function(){
+			var aLi = document.getElementsByTagName("li");
+			var oDiv = document.getElementById("div1");
+			var a = 0;
+			
+			for(var i=0; i<aLi.length; i++){
+				aLi[i].ondragstart = function(ev){
+					this.style.background = "green";
+					var ev = ev || event;
+					ev.dataTransfer.setData("name","hellow");
+				}
+
+				// aLi[i].ondrag = function(){
+				// 	document.title = a++;
+				// }
+
+				aLi[i].ondragend = function(){
+					this.style.background ="yellow";
+				}
+			}
+
+			oDiv.ondragenter= function(){
+					this.style.background = "orange";
+				}
+
+			oDiv.ondragover = function(ev){
+				document.title = a++;
+				ev.preventDefault();
+			}
+
+			oDiv.ondragleave = function(){
+
+					this.style.background ="red";
+
+			}
+
+			oDiv.ondrop = function(){
+				alert(56987);
+			}
+		}
+	</script>
+</head>
+<body>
+	<ul>
+		<li draggable="true">1</li>
+		<li draggable="true">2</li>
+		<li draggable="true">3</li>
+	</ul>
+	<div id="div1"></div>
+</body>
+</html>

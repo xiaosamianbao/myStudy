@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+
+		#div1{
+			width: 50px;
+			height: 50px;
+			background:pink;
+			position: fixed;
+			bottom:10px;
+			right: 5px; 
+			display: none;
+		}
+		body{
+			height: 20000px
+		}
+	</style>
+	<script type="text/javascript">
+	window.onload = function(){
+		var oDiv = document.getElementById("div1");
+		function getScroll(){
+			return document.documentElement.scrollTop + document.body.scrollTop;
+		}
+		function setScroll(value){
+			if(document.documentElement.scrollTop){
+				document.documentElement.scrollTop = value;
+			}else{
+				document.body.scrollTop = value;
+			}
+		}
+		window.onscroll = function(){
+			
+			getScroll()>0?oDiv.style.display="block" : oDiv.style.display="none";
+		}
+		oDiv.onclick = function(){
+			var timer = setInterval(move,10);
+			
+			function move(){
+				setScroll(getScroll()/1.1) ;
+				if(getScroll()<1)clearInterval(timer);
+			}
+		}
+		
+	}
+	</script>
+</head>
+<body>
+	<div id="div1">回到顶部</div>
+</body>
+</html>
